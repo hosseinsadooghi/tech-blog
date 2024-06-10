@@ -3,7 +3,7 @@ import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/my_colors.dart';
 import 'package:tech_blog/view/home_screen.dart';
 import 'package:tech_blog/view/profile_screen.dart';
-import 'package:tech_blog/view/sign_up_page.dart';
+import 'package:tech_blog/view/register_bot.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
                     size: size,
                     textTheme: textTheme,
                     marginFromSide: marginFromSide),
-                SignUpPage(
+                RegisterBot(
                     size: size,
                     textTheme: textTheme,
                     marginFromSide: marginFromSide),
@@ -139,9 +139,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     }),
                     icon: ImageIcon(
                       Assets.icons.home.provider(),
-                      color: selectedNavBarIcon == 0 ? MyColors.navBarActivatedIcons : MyColors.navBarIcons,
+                      color: selectedNavBarIcon == 0
+                          ? MyColors.navBarActivatedIcons
+                          : MyColors.navBarIcons,
                     )),
-                //sign in
+                //sign up
                 IconButton(
                     onPressed: (() {
                       widget.changeScreen(1);
@@ -149,17 +151,21 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     }),
                     icon: ImageIcon(
                       Assets.icons.write.provider(),
-                      color: selectedNavBarIcon == 1 ? MyColors.navBarActivatedIcons : MyColors.navBarIcons,
+                      color: selectedNavBarIcon == 1
+                          ? MyColors.navBarActivatedIcons
+                          : MyColors.navBarIcons,
                     )),
                 //profile scrren
                 IconButton(
-                    onPressed: (()  {
+                    onPressed: (() {
                       widget.changeScreen(2);
                       selectedNavBarIcon = 2;
                     }),
                     icon: ImageIcon(
                       Assets.icons.user.provider(),
-                      color: selectedNavBarIcon == 2 ? MyColors.navBarActivatedIcons : MyColors.navBarIcons,
+                      color: selectedNavBarIcon == 2
+                          ? MyColors.navBarActivatedIcons
+                          : MyColors.navBarIcons,
                     )),
               ],
             ),

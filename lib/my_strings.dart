@@ -8,5 +8,9 @@ class MyStrings {
   static const String myFavortieArticles = "مقالات مورد علاق من";
   static const String myFavortiePodCasts = "پادکست های مورد علاق من";
   static const String logOut = "خروج از حساب کاربری";
+  static const String regBotText = """به تک‌بلاگ خوش اومدی
+
+برای ارسال مطلب و پادکست باید حتما 
+ثبت نام کنی""";
 
 }

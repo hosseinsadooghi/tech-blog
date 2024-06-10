@@ -19,6 +19,7 @@ class MyColors {
   static const Color submitPodcast = Color.fromARGB(255, 246, 246, 246);
   static const Color subText = Color.fromARGB(255, 197, 197, 197);
   static const Color primaryColor = Color.fromARGB(255, 68, 4, 84);
+  static const Color primaryActiveColor = Color.fromARGB(255, 40, 107, 184);
   static const Color seeMore = Color.fromARGB(255, 40, 107, 184);
   static const Color editAvatar = Color.fromARGB(255, 40, 107, 184);
   static const Color articleTitle = Color.fromARGB(200, 255, 255, 255);

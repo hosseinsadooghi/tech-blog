@@ -61,12 +61,12 @@ class ProfileScreen extends StatelessWidget {
           //user name
           Text(
             "فاطمه امیری",
-            style: textTheme. bodyMedium,
+            style: textTheme. bodySmall,
           ),
           //email
           Text(
             "fatemeamiri@gmail.com",
-            style: textTheme. bodyMedium,
+            style: textTheme. bodySmall,
           ),
           //space between user email and user favorite articles
           const SizedBox(
@@ -85,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   MyStrings.myFavortieArticles,
-                  style: textTheme.bodyMedium,
+                  style: textTheme.bodySmall,
                 
                 ),
               ),
@@ -104,7 +104,7 @@ class ProfileScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   MyStrings.myFavortiePodCasts,
-                  style: textTheme.bodyMedium,
+                  style: textTheme.bodySmall,
                 
                 ),
               ),
@@ -123,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   MyStrings.logOut,
-                  style: textTheme.bodyMedium,
+                  style: textTheme.bodySmall,
                 
                 ),
               ),

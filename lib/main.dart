@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 14,
                   color: Colors.white,
                   fontWeight: FontWeight.w300),
-              bodyMedium: TextStyle(
+              bodySmall: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
                   color: Colors.black,
@@ -70,7 +70,14 @@ class MyApp extends StatelessWidget {
                 fontSize: 13,
                 color: MyColors.articleTitle,
                 fontWeight: FontWeight.w300
+              ),
+              bodyMedium: TextStyle(
+                fontFamily: 'dana',
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.w700
               )
+              
               
             )),
         debugShowCheckedModeBanner: false,
