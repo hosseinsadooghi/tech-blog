@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -27,7 +28,7 @@ class RegisterBot extends StatelessWidget {
       children: [
         //spce from top
         SizedBox(
-          height: size.height/5,
+          height: size.height / 5,
         ),
         //bot image
         SvgPicture.asset(
@@ -48,26 +49,73 @@ class RegisterBot extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 32),
           child: ElevatedButton(
-            onPressed: () {},
+            //getting email for log in
+            onPressed: () {
+              showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom
+                      ),
+                      child: Container(
+                        height: size.height / 3,
+                        decoration: BoxDecoration(
+                            color: MyColors.registerTextColor,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30))),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              //text
+                              Text(
+                                MyStrings.insertEmail,
+                                style: textTheme.bodyMedium,
+                              ),
+                              //getting email field
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 24, 0, 24),
+                                child: SizedBox(
+                                  width: size.width/1.5,
+                                  child: TextField(                             
+                                    textAlign: TextAlign.center,
+                                    decoration: InputDecoration(
+                                        hintText: MyStrings.emailExample,
+                                        hintStyle: textTheme.labelMedium
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              //going to verification buttom
+                              ElevatedButton(
+                                onPressed: (){
+                      
+                              }, 
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Text(
+                                    MyStrings.continueText,
+                                    style: textTheme.displayLarge,                                  
+                                  ),
+                                ))
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  });
+            },
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                "بزن بریم",
+                MyStrings.letsStart,
                 style: textTheme.displayLarge,
               ),
             ),
-            style: ButtonStyle(
-                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5))),
-                backgroundColor: WidgetStateColor.resolveWith(
-                  (states) {
-                    if (states.contains(WidgetState.pressed)) {
-                      return MyColors.primaryActiveColor;
-                    }
-                    return MyColors.primaryColor;
-                  },
-                )),
           ),
         ),
       ],

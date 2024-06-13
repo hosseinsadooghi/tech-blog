@@ -8,6 +8,10 @@ class MyStrings {
   static const String myFavortieArticles = "مقالات مورد علاق من";
   static const String myFavortiePodCasts = "پادکست های مورد علاق من";
   static const String logOut = "خروج از حساب کاربری";
+  static const String insertEmail = "لطفا ایمیلت را وارد کن";
+  static const String emailExample = "youremail@gmail.com";
+  static const String letsStart = "بزن بریم";
+  static const String continueText = "ادامه";
   static const String regBotText = """به تک‌بلاگ خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 
