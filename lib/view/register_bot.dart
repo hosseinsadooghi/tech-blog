@@ -158,7 +158,7 @@ class RegisterBot extends StatelessWidget {
                         child: TextField(
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                              hintText: MyStrings.emailExample,
+                              hintText: MyStrings.emailVarificationCodeHolder,
                               hintStyle: textTheme.labelMedium),
                         ),
                       ),
