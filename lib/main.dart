@@ -32,9 +32,14 @@ class MyApp extends StatelessWidget {
             //project inputs decoration
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(width: 2)
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(width: 2),
+                
               ),
+              focusedBorder: OutlineInputBorder(  
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(width: 2,color: MyColors.primaryColor),      
+              ), 
             ),
             //project buttoms decoration
             elevatedButtonTheme: ElevatedButtonThemeData(
@@ -88,16 +93,21 @@ class MyApp extends StatelessWidget {
                     fontSize: 13,
                     color: MyColors.articleTitle,
                     fontWeight: FontWeight.w300),
-                bodyMedium: TextStyle(
+                bodyLarge: TextStyle(
                     fontFamily: 'dana',
                     fontSize: 14,
-                    color: Colors.black,
+                    color: MyColors.primaryColor,
                     fontWeight: FontWeight.w700),
                 labelSmall: TextStyle(
                     fontFamily: 'dana',
                     fontSize: 14,
                     color: MyColors.hintText,
                     fontWeight: FontWeight.w700),
+                bodyMedium: TextStyle(
+                    fontFamily: 'dana',
+                    fontSize: 14,
+                    color: MyColors.primaryColor,
+                    fontWeight: FontWeight.w300),
                     
             )),
         debugShowCheckedModeBanner: false,

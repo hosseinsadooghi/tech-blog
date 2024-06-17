@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/my_colors.dart';
+import 'package:tech_blog/my_component.dart';
 import 'package:tech_blog/my_strings.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -80,7 +81,7 @@ class HomePagePodCastsList extends StatelessWidget {
             //each podcast item
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  8, 8, index == 0 ? marginFromSide : 15, 8),
+                  index == podCastList.length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
               child: Column(
                 children: [
                   //image
@@ -179,7 +180,7 @@ class HomePageArticlesList extends StatelessWidget {
             //each blog item
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  8, 8, index == 0 ? marginFromSide : 15, 8),
+                  index == blogList.getRange(0, 5).length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
               child: Column(
                 children: [
                   //image and publisher
@@ -305,36 +306,8 @@ class HomePageTags extends StatelessWidget {
           itemBuilder: ((context, index) {
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  0, 8, index == 0 ? marginFromSide : 15, 8),
-              child: Container(
-                height: 60,
-                decoration: const BoxDecoration(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(20)),
-                    gradient: LinearGradient(
-                        colors: GradientColors.tags,
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft)),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
-                  child: Row(
-                    children: [
-                      ImageIcon(
-                        Assets.icons.hashtag.provider(),
-                        color: MyColors.hashTagsIcons,
-                        size: 14,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        tagList[index].title,
-                        style: textTheme.displayMedium,
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                  index == tagList.length - 1 ? marginFromSide : 0, 8, index == 0 ? marginFromSide : 15, 8),
+              child: MainTags(textTheme: textTheme, index: index,),
             );
           })),
     );

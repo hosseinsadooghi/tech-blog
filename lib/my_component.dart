@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tech_blog/gen/assets.gen.dart';
+import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/my_colors.dart';
 
 class techDivider extends StatelessWidget {
@@ -14,8 +16,51 @@ class techDivider extends StatelessWidget {
     return Divider(
       thickness: 1.5,
       color: MyColors.divider,
-      indent: size.width/6.41,
-      endIndent: size.width/6.41,
+      indent: size.width / 6.41,
+      endIndent: size.width / 6.41,
+    );
+  }
+}
+
+class MainTags extends StatelessWidget {
+  MainTags({
+    super.key,
+    required this.textTheme,
+    required this.index,
+  });
+
+  final TextTheme textTheme;
+  final index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          gradient: LinearGradient(
+              colors: GradientColors.tags,
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft)),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+        child: Row(
+          children: [
+            ImageIcon(
+              Assets.icons.hashtag.provider(),
+              color: MyColors.hashTagsIcons,
+              size: 14,
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              tagList[index].title,
+              style: textTheme.displayMedium,
+            )
+          ],
+        ),
+      ),
     );
   }
 }

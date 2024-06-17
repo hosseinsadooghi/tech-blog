@@ -1,13 +1,9 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/my_colors.dart';
 import 'package:tech_blog/my_strings.dart';
+import 'package:tech_blog/view/my_categories.dart';
 
 class RegisterBot extends StatelessWidget {
   const RegisterBot({
@@ -42,7 +38,7 @@ class RegisterBot extends StatelessWidget {
               textAlign: TextAlign.center,
               text: TextSpan(
                 text: MyStrings.regBotText,
-                style: textTheme.bodyMedium,
+                style: textTheme.bodyLarge,
               )),
         ),
         //buttom
@@ -78,7 +74,7 @@ class RegisterBot extends StatelessWidget {
             child: Container(
               height: size.height / 3,
               decoration: BoxDecoration(
-                  color: MyColors.registerTextColor,
+                  color: MyColors.registerHoverColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30))),
@@ -89,7 +85,7 @@ class RegisterBot extends StatelessWidget {
                     //text
                     Text(
                       MyStrings.insertEmail,
-                      style: textTheme.bodyMedium,
+                      style: textTheme.bodyLarge,
                     ),
                     //getting email field
                     Padding(
@@ -137,7 +133,7 @@ class RegisterBot extends StatelessWidget {
             child: Container(
               height: size.height / 3,
               decoration: BoxDecoration(
-                  color: MyColors.registerTextColor,
+                  color: MyColors.registerHoverColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30))),
@@ -148,7 +144,7 @@ class RegisterBot extends StatelessWidget {
                     //text
                     Text(
                       MyStrings.insertEmailVarificationCode,
-                      style: textTheme.bodyMedium,
+                      style: textTheme.bodyLarge,
                     ),
                     //getting email field
                     Padding(
@@ -165,7 +161,14 @@ class RegisterBot extends StatelessWidget {
                     ),
                     //going to verification buttom
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => MyCategories(
+                                        size: size,
+                                        textTheme: textTheme,
+                                      )));
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(16),
                           child: Text(

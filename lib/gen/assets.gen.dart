@@ -18,6 +18,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/avatar.png
   AssetGenImage get avatar => const AssetGenImage('assets/icons/avatar.png');
 
+  /// File path: assets/icons/down_pinter.png
+  AssetGenImage get downPinter =>
+      const AssetGenImage('assets/icons/down_pinter.png');
+
   /// File path: assets/icons/hashtag.png
   AssetGenImage get hashtag => const AssetGenImage('assets/icons/hashtag.png');
 
@@ -38,7 +42,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [avatar, hashtag, home, mic, pen, user, write];
+      [avatar, downPinter, hashtag, home, mic, pen, user, write];
 }
 
 class $AssetsImagesGen {
