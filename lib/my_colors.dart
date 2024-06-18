@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class MyColors {
   static const Color appBarIcons = Color.fromARGB(255, 0, 0, 0);
@@ -26,6 +27,8 @@ class MyColors {
   static const Color divider = Color.fromARGB(255, 112, 112, 112);
   static const Color registerHoverColor = Color.fromARGB(255, 255, 255, 255);
   static const Color hintText = Color.fromARGB(255, 219, 219, 219);
+  static const Color surface = Color.fromARGB(255, 242, 242, 242);
+  static const Color deleteIconColor = Colors.grey;
 }
 
 class GradientColors {
