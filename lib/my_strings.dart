@@ -16,6 +16,12 @@ class MyStrings {
   static const String letsStart = "بزن بریم";
   static const String continueText = "ادامه";
   static const String selectYourCategories = "دسته بندی هایی که دوست داری رو انتخاب کن";
+  static const List<String> drawerTitles = [
+    "پروفایل کاربری",
+    "درباره تک بلاگ",
+    "اشتراک گذاری تک بلاگ",
+    "تک بلاگ در گیت هاب",
+  ];
   static const String regBotText = """به تک‌بلاگ خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 

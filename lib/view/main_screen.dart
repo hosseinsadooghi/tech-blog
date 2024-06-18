@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/my_colors.dart';
+import 'package:tech_blog/my_strings.dart';
 import 'package:tech_blog/view/home_screen.dart';
 import 'package:tech_blog/view/profile_screen.dart';
 import 'package:tech_blog/view/register_bot.dart';
@@ -12,72 +14,161 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 class _MainScreenState extends State<MainScreen> {
   var selectedPageIndex = 0;
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: MyColors.statusBarColor,
+        systemNavigationBarColor: MyColors.navigationBarColor,
+        systemNavigationBarIconBrightness: Brightness.dark));
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     var marginFromSide = size.width / 12.46;
 
-    return Scaffold(
-      //bar
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: MyColors.scafoldBackGround,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            //menu button
-            const Icon(
-              Icons.menu,
-              color: MyColors.appBarIcons,
-            ),
-            //tech blog logo
-            SizedBox(
-              height: size.height / 13.6,
-              child: Assets.images.logo.image(),
-            ),
-            //search
-            const Icon(
-              Icons.search,
-              color: MyColors.appBarIcons,
-            )
-          ],
-        ),
-      ),
-      //body
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned.fill(
-                child: IndexedStack(
-              index: selectedPageIndex,
-              children: [
-                HomeScreen(
-                    size: size,
-                    textTheme: textTheme,
-                    marginFromSide: marginFromSide),
-                RegisterBot(
-                    size: size,
-                    textTheme: textTheme,
-                    marginFromSide: marginFromSide),
-                ProfileScreen(
-                    size: size,
-                    textTheme: textTheme,
-                    marginFromSide: marginFromSide)
-              ],
+    return SafeArea(
+
+      child: Scaffold(
+        key: _key,
+        //drawer
+        drawer: Drawer(
+            backgroundColor: MyColors.scafoldBackGround,
+            child: Padding(
+              padding:
+                  EdgeInsets.only(left: marginFromSide, right: marginFromSide),
+              child: ListView(
+                children: [
+                  //drawer header
+                  DrawerHeader(
+                    child: Center(
+                      child: Image.asset(
+                        Assets.images.logo.path,
+                        scale: 3,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: Divider.createBorderSide(context,
+                            color: MyColors.divider, width: 1.0),
+                      ),
+                    ),
+                  ),
+                  //user profile
+                  ListTile(
+                    title: Text(
+                      MyStrings.drawerTitles[0],
+                      style: textTheme.labelMedium,
+                    ),
+                    onTap: () {},
+                  ),
+                  //divider
+                  const Divider(
+                    color: MyColors.divider,
+                  ),
+                  //about tech blog
+                  ListTile(
+                    title: Text(
+                      MyStrings.drawerTitles[1],
+                      style: textTheme.labelMedium,
+                    ),
+                    onTap: () {},
+                  ),
+                  //divider
+                  const Divider(
+                    color: MyColors.divider,
+                  ),
+                  //sharing tech blog
+                  ListTile(
+                    title: Text(
+                      MyStrings.drawerTitles[2],
+                      style: textTheme.labelMedium,
+                    ),
+                    onTap: () {},
+                  ),
+                  //divider
+                  const Divider(
+                    color: MyColors.divider,
+                  ),
+                  //tech blog git hub
+                  ListTile(
+                    title: Text(
+                      MyStrings.drawerTitles[3],
+                      style: textTheme.labelMedium,
+                    ),
+                    onTap: () {},
+                  ),
+                ],
+              ),
             )),
-            //nav bar
-            BottomNavigation(
-              size: size,
-              changeScreen: (int value) {
-                setState(() {
-                  selectedPageIndex = value;
-                });
-              },
-            ),
-          ],
+        //bar
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          backgroundColor: MyColors.scafoldBackGround,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              //menu button
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    _key.currentState!.openDrawer();
+                  });
+                },
+                child: const Icon(
+                  Icons.menu,
+                  color: MyColors.appBarIcons,
+                ),
+              ),
+              //tech blog logo
+              SizedBox(
+                height: size.height / 13.6,
+                child: Assets.images.logo.image(),
+              ),
+              //search
+              const Icon(
+                Icons.search,
+                color: MyColors.appBarIcons,
+              )
+            ],
+          ),
+        ),
+        //body
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Positioned.fill(
+                  child: IndexedStack(
+                index: selectedPageIndex,
+                children: [
+                  HomeScreen(
+                      size: size,
+                      textTheme: textTheme,
+                      marginFromSide: marginFromSide),
+                  RegisterBot(
+                      size: size,
+                      textTheme: textTheme,
+                      marginFromSide: marginFromSide),
+                  ProfileScreen(
+                      size: size,
+                      textTheme: textTheme,
+                      marginFromSide: marginFromSide)
+                ],
+              )),
+              //nav bar
+              BottomNavigation(
+                size: size,
+                changeScreen: (int value) {
+                  setState(() {
+                    selectedPageIndex = value;
+                  });
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/models/data-models.dart';
 import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/my_colors.dart';
 import 'package:tech_blog/my_component.dart';
 import 'package:tech_blog/my_strings.dart';
 
-class MyCategories extends StatefulWidget {
-  MyCategories({
+class UserNameAndCategories extends StatefulWidget {
+  UserNameAndCategories({
     required this.size,
     required this.textTheme,
   });
@@ -19,14 +18,15 @@ class MyCategories extends StatefulWidget {
   final TextTheme textTheme;
 
   @override
-  State<MyCategories> createState() => _MyCategoriesState(size: size,textTheme: textTheme);
+  State<UserNameAndCategories> createState() =>
+      _UserNameAndCategoriesState(size: size, textTheme: textTheme);
 }
 
-class _MyCategoriesState extends State<MyCategories> {
+class _UserNameAndCategoriesState extends State<UserNameAndCategories> {
   final size;
   final textTheme;
 
-  _MyCategoriesState({
+  _UserNameAndCategoriesState({
     required this.size,
     required this.textTheme,
   });
@@ -119,7 +119,9 @@ class _MyCategoriesState extends State<MyCategories> {
                   return InkWell(
                       onTap: () {
                         setState(() {
-                          chosenCategories.add(tagList[index]);
+                          if (!chosenCategories.contains(tagList[index])){
+                            chosenCategories.add(tagList[index]);
+                          }
                         });
                       },
                       child:
