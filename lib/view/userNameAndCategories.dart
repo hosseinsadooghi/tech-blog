@@ -157,7 +157,7 @@ class _UserNameAndCategoriesState extends State<UserNameAndCategories> {
                     crossAxisCount: 1,
                     crossAxisSpacing: widget.size.height / 67.72,
                     mainAxisSpacing: widget.size.width / 18.35,
-                    childAspectRatio: 0.3),
+                    childAspectRatio: 0.31),
                 itemBuilder: (context, index) {
                   var textTheme = Theme.of(context).textTheme;
                   return Container(
