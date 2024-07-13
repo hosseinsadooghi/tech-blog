@@ -144,18 +144,9 @@ class _MainScreenState extends State<MainScreen> {
                   child: IndexedStack(
                 index: selectedPageIndex,
                 children: [
-                  HomeScreen(
-                      size: size,
-                      textTheme: textTheme,
-                      marginFromSide: marginFromSide),
-                  RegisterBot(
-                      size: size,
-                      textTheme: textTheme,
-                      marginFromSide: marginFromSide),
-                  ProfileScreen(
-                      size: size,
-                      textTheme: textTheme,
-                      marginFromSide: marginFromSide)
+                  HomeScreen(),
+                  RegisterBot(),
+                  ProfileScreen()
                 ],
               )),
               //nav bar

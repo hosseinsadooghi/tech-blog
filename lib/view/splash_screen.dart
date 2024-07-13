@@ -30,13 +30,16 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //logo
               SizedBox(
                 height: 50,
                 child: Assets.images.logo.image(),
               ),
+              //space between logo and spinkit
               const SizedBox(
                 height: 32,
               ),
+              //spinkit
               SpinKitFadingCube(
                 color: MyColors.primaryColor,
                 size: 25.0,

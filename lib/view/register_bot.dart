@@ -6,19 +6,12 @@ import 'package:tech_blog/my_strings.dart';
 import 'package:tech_blog/view/userNameAndCategories.dart';
 
 class RegisterBot extends StatelessWidget {
-  const RegisterBot({
-    super.key,
-    required this.size,
-    required this.textTheme,
-    required this.marginFromSide,
-  });
-
-  final Size size;
-  final TextTheme textTheme;
-  final double marginFromSide;
+  
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
     return Center(
         child: Column(
       children: [
@@ -63,6 +56,8 @@ class RegisterBot extends StatelessWidget {
   }
 
   Future<dynamic> insertingEmail(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
     return showModalBottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
@@ -122,6 +117,8 @@ class RegisterBot extends StatelessWidget {
   }
 
   Future<dynamic> emailVerificationCode(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
     return showModalBottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
@@ -162,12 +159,14 @@ class RegisterBot extends StatelessWidget {
                     //going to verification buttom
                     ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                                  builder: (context) => UserNameAndCategories(
-                                        size: size,
-                                        textTheme: textTheme,
-                                      )));
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => UserNameAndCategories(
+                                size: size,
+                                textTheme: textTheme,
+                              )
+                            )
+                          );
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(16),

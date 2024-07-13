@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake-data.dart';
@@ -7,19 +6,12 @@ import 'package:tech_blog/my_component.dart';
 import 'package:tech_blog/my_strings.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-    required this.size,
-    required this.textTheme,
-    required this.marginFromSide,
-  });
-
-  final Size size;
-  final TextTheme textTheme;
-  final double marginFromSide;
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
+    var marginFromSide = size.width / 12.46;
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(

@@ -18,8 +18,7 @@ class UserNameAndCategories extends StatefulWidget {
   final TextTheme textTheme;
 
   @override
-  State<UserNameAndCategories> createState() =>
-      _UserNameAndCategoriesState(size: size, textTheme: textTheme);
+  State<UserNameAndCategories> createState() =>_UserNameAndCategoriesState(size: size, textTheme: textTheme);
 }
 
 class _UserNameAndCategoriesState extends State<UserNameAndCategories> {
