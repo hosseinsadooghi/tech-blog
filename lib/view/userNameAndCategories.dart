@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake-data.dart';
-import 'package:tech_blog/my_colors.dart';
-import 'package:tech_blog/my_component.dart';
-import 'package:tech_blog/my_strings.dart';
+import 'package:tech_blog/component/my_colors.dart';
+import 'package:tech_blog/component/my_component.dart';
+import 'package:tech_blog/component/my_strings.dart';
 
 class UserNameAndCategories extends StatefulWidget {
   UserNameAndCategories({
