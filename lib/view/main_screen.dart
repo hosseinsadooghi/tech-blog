@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_strings.dart';
@@ -174,7 +176,7 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final Function(int) changeScreen;
 
-  var selectedNavBarIcon = 0;
+  RxInt selectedNavBarIcon = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -210,38 +212,38 @@ class BottomNavigation extends StatelessWidget {
                 IconButton(
                     onPressed: (() {
                       changeScreen(0);
-                      selectedNavBarIcon = 0;
+                      selectedNavBarIcon.value = 0;
                     }),
-                    icon: ImageIcon(
+                    icon: Obx(() => ImageIcon(
                       Assets.icons.home.provider(),
-                      color: selectedNavBarIcon == 0
+                      color: selectedNavBarIcon.value == 0
                           ? MyColors.navBarActivatedIcons
                           : MyColors.navBarIcons,
-                    )),
+                    ),)),
                 //sign up
                 IconButton(
                     onPressed: (() {
                       changeScreen(1);
-                      selectedNavBarIcon = 1;
+                      selectedNavBarIcon.value = 1;
                     }),
-                    icon: ImageIcon(
+                    icon: Obx(() => ImageIcon(
                       Assets.icons.write.provider(),
-                      color: selectedNavBarIcon == 1
+                      color: selectedNavBarIcon.value == 1
                           ? MyColors.navBarActivatedIcons
                           : MyColors.navBarIcons,
-                    )),
+                    ),)),
                 //profile scrren
                 IconButton(
                     onPressed: (() {
                       changeScreen(2);
-                      selectedNavBarIcon = 2;
+                      selectedNavBarIcon.value = 2;
                     }),
-                    icon: ImageIcon(
+                    icon: Obx(() => ImageIcon(
                       Assets.icons.user.provider(),
-                      color: selectedNavBarIcon == 2
+                      color: selectedNavBarIcon.value == 2
                           ? MyColors.navBarActivatedIcons
                           : MyColors.navBarIcons,
-                    )),
+                    ),)),
               ],
             ),
           ),
