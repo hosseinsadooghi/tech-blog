@@ -43,6 +43,7 @@ dependencies:
   flutter_spinkit: ^5.2.1
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
+  share_plus: ^7.2.2
 
 dev_dependencies:
   flutter_test:

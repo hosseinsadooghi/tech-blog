@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_strings.dart';
@@ -87,7 +88,9 @@ class MainScreen extends StatelessWidget {
                       MyStrings.drawerTitles[2],
                       style: textTheme.labelMedium,
                     ),
-                    onTap: () {},
+                    onTap: () async{
+                      await Share.share(MyStrings.shareText);
+                    },
                   ),
                   //divider
                   const Divider(

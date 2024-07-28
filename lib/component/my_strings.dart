@@ -22,10 +22,16 @@ class MyStrings {
     "اشتراک گذاری تک بلاگ",
     "تک بلاگ در گیت هاب",
   ];
-  static const String regBotText = """به تک‌بلاگ خوش اومدی
+  static const String regBotText = """
+
+this is an example that shares the link of google with you\n
+
+www.google.com
+""";  
+static const String shareText = """به تک‌بلاگ خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی""";  
-static const String chooseYourCategories = """ایمیل با موفقیت ثبت شد. تبریک می گم!
+  static const String chooseYourCategories = """ایمیل با موفقیت ثبت شد. تبریک می گم!
 لطفا اطلاعات ثبت نام رو کامل کن""";
 }
