@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_strings.dart';
@@ -7,17 +8,15 @@ import 'package:tech_blog/view/home_screen.dart';
 import 'package:tech_blog/view/profile_screen.dart';
 import 'package:tech_blog/view/register_bot.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class _MainScreenState extends State<MainScreen> {
-  var selectedPageIndex = 0;
+class MainScreen extends StatelessWidget {
+
+  MainScreen ({Key?key}):super();
+
+  RxInt selectedPageIndex = 0.obs;
+  
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -114,9 +113,8 @@ class _MainScreenState extends State<MainScreen> {
               //menu button
               InkWell(
                 onTap: () {
-                  setState(() {
                     _key.currentState!.openDrawer();
-                  });
+                  
                 },
                 child: const Icon(
                   Icons.menu,
@@ -141,23 +139,23 @@ class _MainScreenState extends State<MainScreen> {
           child: Stack(
             children: [
               Positioned.fill(
-                  child: IndexedStack(
-                index: selectedPageIndex,
+                  child: Obx(()=>IndexedStack(
+                index: selectedPageIndex.value,
                 children: [
                   HomeScreen(),
                   RegisterBot(),
                   ProfileScreen()
                 ],
-              )),
+              ))
+              ),
               //nav bar
               BottomNavigation(
                 size: size,
                 changeScreen: (int value) {
-                  setState(() {
-                    selectedPageIndex = value;
-                  });
+                    selectedPageIndex.value = value;
+                  
                 },
-              ),
+              )
             ],
           ),
         ),
@@ -166,7 +164,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-class BottomNavigation extends StatefulWidget {
+class BottomNavigation extends StatelessWidget {
   BottomNavigation({
     super.key,
     required this.size,
@@ -176,11 +174,6 @@ class BottomNavigation extends StatefulWidget {
   final Size size;
   final Function(int) changeScreen;
 
-  @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
-}
-
-class _BottomNavigationState extends State<BottomNavigation> {
   var selectedNavBarIcon = 0;
 
   @override
@@ -192,7 +185,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       child: Stack(children: [
         //fade part
         Container(
-          height: widget.size.height / 10,
+          height: size.height / 10,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                   colors: GradientColors.bottomNavBackGround,
@@ -203,8 +196,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
         Align(
           alignment: Alignment.center,
           child: Container(
-            height: widget.size.height / 12.35,
-            width: widget.size.width / 1.37,
+            height: size.height / 12.35,
+            width: size.width / 1.37,
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(18)),
                 gradient: LinearGradient(
@@ -216,7 +209,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 //home screen
                 IconButton(
                     onPressed: (() {
-                      widget.changeScreen(0);
+                      changeScreen(0);
                       selectedNavBarIcon = 0;
                     }),
                     icon: ImageIcon(
@@ -228,7 +221,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 //sign up
                 IconButton(
                     onPressed: (() {
-                      widget.changeScreen(1);
+                      changeScreen(1);
                       selectedNavBarIcon = 1;
                     }),
                     icon: ImageIcon(
@@ -240,7 +233,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 //profile scrren
                 IconButton(
                     onPressed: (() {
-                      widget.changeScreen(2);
+                      changeScreen(2);
                       selectedNavBarIcon = 2;
                     }),
                     icon: ImageIcon(
@@ -257,3 +250,4 @@ class _BottomNavigationState extends State<BottomNavigation> {
     );
   }
 }
+
