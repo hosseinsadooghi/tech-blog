@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_strings.dart';
@@ -11,15 +12,13 @@ import 'package:tech_blog/view/home_screen.dart';
 import 'package:tech_blog/view/profile_screen.dart';
 import 'package:tech_blog/view/register_bot.dart';
 
-
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class MainScreen extends StatelessWidget {
-
-  MainScreen ({Key?key}):super();
+  MainScreen({Key? key}) : super();
 
   RxInt selectedPageIndex = 0.obs;
-  
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -32,7 +31,6 @@ class MainScreen extends StatelessWidget {
     var marginFromSide = size.width / 12.46;
 
     return SafeArea(
-
       child: Scaffold(
         key: _key,
         //drawer
@@ -88,7 +86,7 @@ class MainScreen extends StatelessWidget {
                       MyStrings.drawerTitles[2],
                       style: textTheme.labelMedium,
                     ),
-                    onTap: () async{
+                    onTap: () async {
                       await Share.share(MyStrings.shareText);
                     },
                   ),
@@ -102,7 +100,9 @@ class MainScreen extends StatelessWidget {
                       MyStrings.drawerTitles[3],
                       style: textTheme.labelMedium,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      mylaunchUrl(MyStrings.myPersonalGitHubPage);
+                    },
                   ),
                 ],
               ),
@@ -118,8 +118,7 @@ class MainScreen extends StatelessWidget {
               //menu button
               InkWell(
                 onTap: () {
-                    _key.currentState!.openDrawer();
-                  
+                  _key.currentState!.openDrawer();
                 },
                 child: const Icon(
                   Icons.menu,
@@ -144,21 +143,19 @@ class MainScreen extends StatelessWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                  child: Obx(()=>IndexedStack(
-                index: selectedPageIndex.value,
-                children: [
-                  HomeScreen(),
-                  RegisterBot(),
-                  ProfileScreen()
-                ],
-              ))
-              ),
+                  child: Obx(() => IndexedStack(
+                        index: selectedPageIndex.value,
+                        children: [
+                          HomeScreen(),
+                          RegisterBot(),
+                          ProfileScreen()
+                        ],
+                      ))),
               //nav bar
               BottomNavigation(
                 size: size,
                 changeScreen: (int value) {
-                    selectedPageIndex.value = value;
-                  
+                  selectedPageIndex.value = value;
                 },
               )
             ],
@@ -217,36 +214,42 @@ class BottomNavigation extends StatelessWidget {
                       changeScreen(0);
                       selectedNavBarIcon.value = 0;
                     }),
-                    icon: Obx(() => ImageIcon(
-                      Assets.icons.home.provider(),
-                      color: selectedNavBarIcon.value == 0
-                          ? MyColors.navBarActivatedIcons
-                          : MyColors.navBarIcons,
-                    ),)),
+                    icon: Obx(
+                      () => ImageIcon(
+                        Assets.icons.home.provider(),
+                        color: selectedNavBarIcon.value == 0
+                            ? MyColors.navBarActivatedIcons
+                            : MyColors.navBarIcons,
+                      ),
+                    )),
                 //sign up
                 IconButton(
                     onPressed: (() {
                       changeScreen(1);
                       selectedNavBarIcon.value = 1;
                     }),
-                    icon: Obx(() => ImageIcon(
-                      Assets.icons.write.provider(),
-                      color: selectedNavBarIcon.value == 1
-                          ? MyColors.navBarActivatedIcons
-                          : MyColors.navBarIcons,
-                    ),)),
+                    icon: Obx(
+                      () => ImageIcon(
+                        Assets.icons.write.provider(),
+                        color: selectedNavBarIcon.value == 1
+                            ? MyColors.navBarActivatedIcons
+                            : MyColors.navBarIcons,
+                      ),
+                    )),
                 //profile scrren
                 IconButton(
                     onPressed: (() {
                       changeScreen(2);
                       selectedNavBarIcon.value = 2;
                     }),
-                    icon: Obx(() => ImageIcon(
-                      Assets.icons.user.provider(),
-                      color: selectedNavBarIcon.value == 2
-                          ? MyColors.navBarActivatedIcons
-                          : MyColors.navBarIcons,
-                    ),)),
+                    icon: Obx(
+                      () => ImageIcon(
+                        Assets.icons.user.provider(),
+                        color: selectedNavBarIcon.value == 2
+                            ? MyColors.navBarActivatedIcons
+                            : MyColors.navBarIcons,
+                      ),
+                    )),
               ],
             ),
           ),
@@ -255,4 +258,3 @@ class BottomNavigation extends StatelessWidget {
     );
   }
 }
-

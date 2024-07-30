@@ -16,6 +16,7 @@ class MyStrings {
   static const String letsStart = "بزن بریم";
   static const String continueText = "ادامه";
   static const String selectYourCategories = "دسته بندی هایی که دوست داری رو انتخاب کن";
+  static const String myPersonalGitHubPage = "https://github.com/hosseinsadooghi/hosseinsadooghi";
   static const List<String> drawerTitles = [
     "پروفایل کاربری",
     "درباره تک بلاگ",

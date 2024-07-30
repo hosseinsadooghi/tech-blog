@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/component/my_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class techDivider extends StatelessWidget {
   const techDivider({
@@ -62,5 +65,14 @@ class MainTags extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+mylaunchUrl(String url) async {
+  var uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  } else {
+    log("could not launch ${uri.toString()}");
   }
 }
