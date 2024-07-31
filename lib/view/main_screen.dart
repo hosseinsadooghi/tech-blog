@@ -86,8 +86,8 @@ class MainScreen extends StatelessWidget {
                       MyStrings.drawerTitles[2],
                       style: textTheme.labelMedium,
                     ),
-                    onTap: () async {
-                      await Share.share(MyStrings.shareText);
+                    onTap: () {
+                       Share.share(MyStrings.shareText);
                     },
                   ),
                   //divider
