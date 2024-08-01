@@ -44,8 +44,9 @@ dependencies:
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
   url_launcher: ^6.3.0
-  share_plus: ^7.2.2
+  share_plus: ^10.0.0
 
+  vector_graphics: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

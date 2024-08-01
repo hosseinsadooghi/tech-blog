@@ -23,7 +23,7 @@ class MyStrings {
     "اشتراک گذاری تک بلاگ",
     "تک بلاگ در گیت هاب",
   ];
-  static const String shareText = "instead of nothing read my resome https://github.com/hosseinsadooghi/hosseinsadooghi";  
+  static const String shareText = 'instead of nothing read my resome https://github.com/hosseinsadooghi/hosseinsadooghi';  
 static const String regBotText = """به تک‌بلاگ خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 
