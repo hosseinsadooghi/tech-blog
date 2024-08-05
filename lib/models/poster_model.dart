@@ -1,4 +1,3 @@
-import 'package:tech_blog/models/data-models.dart';
 
 class PosterModel {
   String? id;
