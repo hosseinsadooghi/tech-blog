@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tech_blog/controlers/home_screen_controler.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/component/my_colors.dart';
@@ -6,9 +8,13 @@ import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/component/my_strings.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
   @override
   Widget build(BuildContext context) {
+    //TODO: فقط برای تست
+    homeScreenController.getHomeItems();
+
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     var marginFromSide = size.width / 12.46;
@@ -16,13 +22,12 @@ class HomeScreen extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          
           HomePagePoster(size: size, textTheme: textTheme),
           //space between poster and tags
           const SizedBox(
             height: 16,
           ),
-          
+
           HomePageTags(marginFromSide: marginFromSide, textTheme: textTheme),
           //space between hashtags and hot articles
           const SizedBox(
@@ -30,8 +35,9 @@ class HomeScreen extends StatelessWidget {
           ),
 
           SeeMoreArticles(marginFromSide: marginFromSide, textTheme: textTheme),
-          
-          HomePageArticlesList(size: size, marginFromSide: marginFromSide, textTheme: textTheme),
+
+          HomePageArticlesList(
+              size: size, marginFromSide: marginFromSide, textTheme: textTheme),
           //space between articles and poscasts
           const SizedBox(
             height: 32,
@@ -39,7 +45,8 @@ class HomeScreen extends StatelessWidget {
 
           SeeMorePodCasts(marginFromSide: marginFromSide, textTheme: textTheme),
 
-          HomePagePodCastsList(size: size, marginFromSide: marginFromSide, textTheme: textTheme),
+          HomePagePodCastsList(
+              size: size, marginFromSide: marginFromSide, textTheme: textTheme),
           //space between podcast and bottom of the window so it doesnt go behind the navbar
           SizedBox(
             height: size.height / 10,
@@ -73,7 +80,10 @@ class HomePagePodCastsList extends StatelessWidget {
             //each podcast item
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  index == podCastList.length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
+                  index == podCastList.length - 1 ? marginFromSide : 8,
+                  8,
+                  index == 0 ? marginFromSide : 15,
+                  8),
               child: Column(
                 children: [
                   //image
@@ -82,8 +92,7 @@ class HomePagePodCastsList extends StatelessWidget {
                     width: size.width / 3.1,
                     child: Container(
                       decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(16))),
+                          borderRadius: BorderRadius.all(Radius.circular(16))),
                       child: podCastList[index].bannerUrl,
                     ),
                   ),
@@ -95,15 +104,14 @@ class HomePagePodCastsList extends StatelessWidget {
                   SizedBox(
                     width: size.width / 3.1,
                     child: Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             podCastList[index].name,
                             style: textTheme.displaySmall,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                          ),                         
+                          ),
                         ]),
                   ),
                 ],
@@ -172,7 +180,12 @@ class HomePageArticlesList extends StatelessWidget {
             //each blog item
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  index == blogList.getRange(0, 5).length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
+                  index == blogList.getRange(0, 5).length - 1
+                      ? marginFromSide
+                      : 8,
+                  8,
+                  index == 0 ? marginFromSide : 15,
+                  8),
               child: Column(
                 children: [
                   //image and publisher
@@ -184,21 +197,19 @@ class HomePageArticlesList extends StatelessWidget {
                         //image
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                                Radius.circular(16)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(16)),
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    blogList[index].bannerUrl),
+                                image: NetworkImage(blogList[index].bannerUrl),
                                 fit: BoxFit.cover),
                           ),
-                          foregroundDecoration:
-                              const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(16)),
-                                  gradient: LinearGradient(
-                                      colors: GradientColors.blogList,
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
+                          foregroundDecoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                              gradient: LinearGradient(
+                                  colors: GradientColors.blogList,
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter)),
                         ),
                         //text on the image
                         Positioned(
@@ -212,8 +223,7 @@ class HomePageArticlesList extends StatelessWidget {
                               Text(blogList[index].writer,
                                   style: textTheme.titleSmall),
                               //view
-                              Text(
-                                  "view ${blogList[index].views}",
+                              Text("view ${blogList[index].views}",
                                   style: textTheme.titleSmall)
                             ],
                           ),
@@ -298,8 +308,14 @@ class HomePageTags extends StatelessWidget {
           itemBuilder: ((context, index) {
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  index == tagList.length - 1 ? marginFromSide : 0, 8, index == 0 ? marginFromSide : 15, 8),
-              child: MainTags(textTheme: textTheme, index: index,),
+                  index == tagList.length - 1 ? marginFromSide : 0,
+                  8,
+                  index == 0 ? marginFromSide : 15,
+                  8),
+              child: MainTags(
+                textTheme: textTheme,
+                index: index,
+              ),
             );
           })),
     );
@@ -325,11 +341,9 @@ class HomePagePoster extends StatelessWidget {
           width: size.width / 1.19,
           height: size.height / 4.2,
           decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.all(Radius.circular(16)),
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
               image: DecorationImage(
-                  image: AssetImage(
-                      homePagePosterMap["imageAssets"]),
+                  image: AssetImage(homePagePosterMap["imageAssets"]),
                   fit: BoxFit.cover)),
           foregroundDecoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(16)),
