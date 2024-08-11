@@ -12,8 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: فقط برای تست
-    homeScreenController.getHomeItems();
 
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
