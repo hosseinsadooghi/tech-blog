@@ -30,20 +30,3 @@ class BlogModel {
   });
 }
 
-class PodCastModel {
-  int id;
-  Image bannerUrl;
-  String name;
-  String imageUrl;
-  String owner;
-  String views;
-
-  PodCastModel({
-    required this.id,
-    required this.bannerUrl,
-    required this.name,
-    required this.imageUrl,
-    required this.owner,
-    required this.views,
-  });
-}

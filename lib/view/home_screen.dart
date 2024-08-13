@@ -42,9 +42,8 @@ class HomeScreen extends StatelessWidget {
 
           SeeMorePodCasts(marginFromSide: marginFromSide, textTheme: textTheme),
 
-          HomePagePodCastsList(
-              size: size, marginFromSide: marginFromSide, textTheme: textTheme),
-          //space between podcast and bottom of the window so it doesnt go behind the navbar
+          topPodcasts(context),
+         //space between podcast and bottom of the window so it doesnt go behind the navbar
           SizedBox(
             height: size.height / 10,
           )
@@ -139,71 +138,67 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-class HomePagePodCastsList extends StatelessWidget {
-  const HomePagePodCastsList({
-    super.key,
-    required this.size,
-    required this.marginFromSide,
-    required this.textTheme,
-  });
-
-  final Size size;
-  final double marginFromSide;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget topPodcasts(BuildContext context){
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
+    var marginFromSide = size.width / 12.46;
     return SizedBox(
       height: size.height / 4.5,
-      child: ListView.builder(
-          itemCount: podCastList.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: ((context, index) {
-            //each podcast item
-            return Padding(
-              padding: EdgeInsets.fromLTRB(
-                  index == podCastList.length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
-              child: Column(
-                children: [
-                  //image
-                  SizedBox(
-                    height: size.height / 7,
-                    width: size.width / 3.1,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(16))),
-                      child: podCastList[index].bannerUrl,
+      child: Obx(
+        () => ListView.builder(
+            itemCount: homeScreenController.topPodcastList.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: ((context, index) {
+              //each podcast item
+              return Padding(
+                padding: EdgeInsets.fromLTRB(
+                    index == homeScreenController.topPodcastList.length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
+                child: Column(
+                  children: [
+                    //image
+                    SizedBox(
+                      height: size.height / 7,
+                      width: size.width / 3.1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(16)),
+                                image: DecorationImage(
+                                    image: NetworkImage(homeScreenController.topPodcastList[index].poster!),
+                                    fit: BoxFit.cover),
+                              ),
+                      ),
                     ),
-                  ),
-                  //space between banner and text
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  //text
-                  SizedBox(
-                    width: size.width / 3.1,
-                    child: Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            podCastList[index].name,
-                            style: textTheme.displaySmall,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),                         
-                        ]),
-                  ),
-                ],
-              ),
-            );
-          })),
+                    //space between banner and text
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    //text
+                    SizedBox(
+                      width: size.width / 3.1,
+                      child: Row(
+                          mainAxisAlignment:
+                              MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              homeScreenController.topPodcastList[index].title!,
+                              style: textTheme.displaySmall,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),                         
+                          ]),
+                    ),
+                  ],
+                ),
+              );
+            })),
+      ),
     );
   }
 }
+
+
 
 class SeeMorePodCasts extends StatelessWidget {
   const SeeMorePodCasts({
@@ -239,8 +234,6 @@ class SeeMorePodCasts extends StatelessWidget {
     );
   }
 }
-
-
 
 class SeeMoreArticles extends StatelessWidget {
   const SeeMoreArticles({

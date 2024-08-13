@@ -282,37 +282,3 @@ List<BlogModel> blogList = [
       """,
       views: "256")
 ];
-
-List<PodCastModel> podCastList = [
-  PodCastModel(
-      id: 1,
-      bannerUrl: Assets.images.podcastsPicture1.image(fit: BoxFit.cover),
-      imageUrl: "https://digiato.com/wp-content/uploads/2021/02/1-30.jpg",
-      name: "نیکان",
-      owner: "جواد تاجی",
-      views: "256"),
-  PodCastModel(
-      id: 2,
-      bannerUrl: Assets.images.podcastsPicture2.image(fit: BoxFit.cover),
-      imageUrl:
-          "https://digiato.com/wp-content/uploads/2022/02/10897985_639437109516078_4342420382567329691_n-300x300.jpg",
-      name: "بوران",
-      owner: "مرضیه فرجی",
-      views: "333"),
-  PodCastModel(
-      id: 3,
-      bannerUrl: Assets.images.podcastsPicture3.image(fit: BoxFit.cover),
-      imageUrl:
-          "https://digiato.com/wp-content/uploads/2022/04/elon-musk-4-90x90.jpg",
-      name: "گویان",
-      owner: "آرش تهرانی",
-      views: "798"),
-  PodCastModel(
-      id: 4,
-      bannerUrl: Assets.images.podcastsPicture4.image(fit: BoxFit.cover),
-      imageUrl:
-          "https://digiato.com/wp-content/uploads/2022/04/photo_2022-04-29_09-37-59.jpg",
-      name: "شوران",
-      owner: "ایلان موسک",
-      views: "55"),
-];
