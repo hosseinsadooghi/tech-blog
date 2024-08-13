@@ -34,8 +34,7 @@ class HomeScreen extends StatelessWidget {
 
           SeeMoreArticles(marginFromSide: marginFromSide, textTheme: textTheme),
 
-          HomePageArticlesList(
-              size: size, marginFromSide: marginFromSide, textTheme: textTheme),
+          topVisited(context),
           //space between articles and poscasts
           const SizedBox(
             height: 32,
@@ -50,6 +49,93 @@ class HomeScreen extends StatelessWidget {
             height: size.height / 10,
           )
         ],
+      ),
+    );
+  }
+
+  Widget topVisited(BuildContext context){
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
+    var marginFromSide = size.width / 12.46;
+    return SizedBox(
+      height: size.height / 3.9,
+      child: Obx(
+        () => ListView.builder(
+            itemCount: homeScreenController.topVisitedList.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: ((context, index) {
+              //each blog item
+              return Padding(
+                padding: EdgeInsets.fromLTRB(
+                    index == blogList.getRange(0, 5).length - 1
+                        ? marginFromSide
+                        : 8,
+                    8,
+                    index == 0 ? marginFromSide : 15,
+                    8),
+                child: Column(
+                  children: [
+                    //image and publisher
+                    SizedBox(
+                      height: size.height / 5.53,
+                      width: size.width / 2.66,
+                      child: Stack(
+                        children: [
+                          //image
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(16)),
+                              image: DecorationImage(
+                                  image: NetworkImage(homeScreenController.topVisitedList[index].image!),
+                                  fit: BoxFit.cover),
+                            ),
+                            foregroundDecoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16)),
+                                gradient: LinearGradient(
+                                    colors: GradientColors.blogList,
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter)),
+                          ),
+                          //text on the image
+                          Positioned(
+                            bottom: 8,
+                            left: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                //writer
+                                Text(homeScreenController.topVisitedList[index].author!,
+                                    style: textTheme.titleSmall),
+                                //view
+                                Text("view ${homeScreenController.topVisitedList[index].view!}",
+                                    style: textTheme.titleSmall)
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    //space between banner and text
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    //text
+                    SizedBox(
+                      width: size.width / 2.66,
+                      child: Text(
+                        homeScreenController.topVisitedList[index].title!,
+                        style: textTheme.displaySmall,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            })),
       ),
     );
   }
@@ -78,10 +164,7 @@ class HomePagePodCastsList extends StatelessWidget {
             //each podcast item
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  index == podCastList.length - 1 ? marginFromSide : 8,
-                  8,
-                  index == 0 ? marginFromSide : 15,
-                  8),
+                  index == podCastList.length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
               child: Column(
                 children: [
                   //image
@@ -90,7 +173,8 @@ class HomePagePodCastsList extends StatelessWidget {
                     width: size.width / 3.1,
                     child: Container(
                       decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(16))),
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(16))),
                       child: podCastList[index].bannerUrl,
                     ),
                   ),
@@ -102,14 +186,15 @@ class HomePagePodCastsList extends StatelessWidget {
                   SizedBox(
                     width: size.width / 3.1,
                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment:
+                            MainAxisAlignment.center,
                         children: [
                           Text(
                             podCastList[index].name,
                             style: textTheme.displaySmall,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                          ),
+                          ),                         
                         ]),
                   ),
                 ],
@@ -155,101 +240,7 @@ class SeeMorePodCasts extends StatelessWidget {
   }
 }
 
-class HomePageArticlesList extends StatelessWidget {
-  const HomePageArticlesList({
-    super.key,
-    required this.size,
-    required this.marginFromSide,
-    required this.textTheme,
-  });
 
-  final Size size;
-  final double marginFromSide;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: size.height / 3.9,
-      child: ListView.builder(
-          itemCount: blogList.getRange(0, 5).length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: ((context, index) {
-            //each blog item
-            return Padding(
-              padding: EdgeInsets.fromLTRB(
-                  index == blogList.getRange(0, 5).length - 1
-                      ? marginFromSide
-                      : 8,
-                  8,
-                  index == 0 ? marginFromSide : 15,
-                  8),
-              child: Column(
-                children: [
-                  //image and publisher
-                  SizedBox(
-                    height: size.height / 5.53,
-                    width: size.width / 2.66,
-                    child: Stack(
-                      children: [
-                        //image
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(16)),
-                            image: DecorationImage(
-                                image: NetworkImage(blogList[index].bannerUrl),
-                                fit: BoxFit.cover),
-                          ),
-                          foregroundDecoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16)),
-                              gradient: LinearGradient(
-                                  colors: GradientColors.blogList,
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter)),
-                        ),
-                        //text on the image
-                        Positioned(
-                          bottom: 8,
-                          left: 0,
-                          right: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              //writer
-                              Text(blogList[index].writer,
-                                  style: textTheme.titleSmall),
-                              //view
-                              Text("view ${blogList[index].views}",
-                                  style: textTheme.titleSmall)
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  //space between banner and text
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  //text
-                  SizedBox(
-                    width: size.width / 2.66,
-                    child: Text(
-                      blogList[index].title,
-                      style: textTheme.displaySmall,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          })),
-    );
-  }
-}
 
 class SeeMoreArticles extends StatelessWidget {
   const SeeMoreArticles({
