@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/controlers/home_screen_controler.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
@@ -12,7 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     var marginFromSide = size.width / 12.46;
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
           SeeMorePodCasts(marginFromSide: marginFromSide, textTheme: textTheme),
 
           topPodcasts(context),
-         //space between podcast and bottom of the window so it doesnt go behind the navbar
+          //space between podcast and bottom of the window so it doesnt go behind the navbar
           SizedBox(
             height: size.height / 10,
           )
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget topVisited(BuildContext context){
+  Widget topVisited(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     var marginFromSide = size.width / 12.46;
@@ -86,7 +87,8 @@ class HomeScreen extends StatelessWidget {
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(16)),
                               image: DecorationImage(
-                                  image: NetworkImage(homeScreenController.topVisitedList[index].image!),
+                                  image: NetworkImage(homeScreenController
+                                      .topVisitedList[index].image!),
                                   fit: BoxFit.cover),
                             ),
                             foregroundDecoration: const BoxDecoration(
@@ -106,10 +108,13 @@ class HomeScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 //writer
-                                Text(homeScreenController.topVisitedList[index].author!,
+                                Text(
+                                    homeScreenController
+                                        .topVisitedList[index].author!,
                                     style: textTheme.titleSmall),
                                 //view
-                                Text("view ${homeScreenController.topVisitedList[index].view!}",
+                                Text(
+                                    "view ${homeScreenController.topVisitedList[index].view!}",
                                     style: textTheme.titleSmall)
                               ],
                             ),
@@ -139,7 +144,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget topPodcasts(BuildContext context){
+  Widget topPodcasts(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     var marginFromSide = size.width / 12.46;
@@ -153,21 +158,39 @@ class HomeScreen extends StatelessWidget {
               //each podcast item
               return Padding(
                 padding: EdgeInsets.fromLTRB(
-                    index == homeScreenController.topPodcastList.length - 1 ? marginFromSide : 8, 8, index == 0 ? marginFromSide : 15, 8),
+                    index == homeScreenController.topPodcastList.length - 1
+                        ? marginFromSide
+                        : 8,
+                    8,
+                    index == 0 ? marginFromSide : 15,
+                    8),
                 child: Column(
                   children: [
                     //image
                     SizedBox(
                       height: size.height / 7,
                       width: size.width / 3.1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(16)),
-                                image: DecorationImage(
-                                    image: NetworkImage(homeScreenController.topPodcastList[index].poster!),
-                                    fit: BoxFit.cover),
-                              ),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            homeScreenController.topPodcastList[index].poster!,
+                        imageBuilder: (context, imageProvider) {
+                          return Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(16)),
+                                  image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover)));
+                        },
+                        placeholder: (context, url) {
+                          return SpinKitFadingCube(
+                            color: MyColors.primaryColor,
+                            size: 32,
+                          );
+                        },
+                        errorWidget: (context, url, error) {
+                          return Icon(Icons.image_not_supported_outlined,size: 50,);
+                        },
                       ),
                     ),
                     //space between banner and text
@@ -178,15 +201,14 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(
                       width: size.width / 3.1,
                       child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               homeScreenController.topPodcastList[index].title!,
                               style: textTheme.displaySmall,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                            ),                         
+                            ),
                           ]),
                     ),
                   ],
@@ -197,8 +219,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 class SeeMorePodCasts extends StatelessWidget {
   const SeeMorePodCasts({
