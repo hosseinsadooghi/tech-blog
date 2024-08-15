@@ -82,23 +82,41 @@ class HomeScreen extends StatelessWidget {
                       child: Stack(
                         children: [
                           //image
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(16)),
-                              image: DecorationImage(
-                                  image: NetworkImage(homeScreenController
-                                      .topVisitedList[index].image!),
-                                  fit: BoxFit.cover),
-                            ),
-                            foregroundDecoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(16)),
-                                gradient: LinearGradient(
-                                    colors: GradientColors.blogList,
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter)),
+                          CachedNetworkImage(
+                            imageUrl: homeScreenController
+                                .topVisitedList[index].image!,
+                            imageBuilder: (context, imageProvider) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(16)),
+                                  image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover)
+                                ),
+                                foregroundDecoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(16)),
+                                    gradient: LinearGradient(
+                                        colors: GradientColors.blogList,
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                              );
+                            },
+                            placeholder: (context, url) {
+                              return SpinKitFadingCube(
+                                color: MyColors.primaryColor,
+                                size: 32,
+                              );
+                            },
+                            errorWidget: (context, url, error) {
+                              return Icon(
+                                Icons.image_not_supported_outlined,
+                                size: 50,
+                              );
+                            },
                           ),
+
                           //text on the image
                           Positioned(
                             bottom: 8,
@@ -189,7 +207,10 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         errorWidget: (context, url, error) {
-                          return Icon(Icons.image_not_supported_outlined,size: 50,);
+                          return Icon(
+                            Icons.image_not_supported_outlined,
+                            size: 50,
+                          );
                         },
                       ),
                     ),
