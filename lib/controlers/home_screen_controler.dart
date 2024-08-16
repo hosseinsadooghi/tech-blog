@@ -6,7 +6,7 @@ import 'package:tech_blog/models/poster_model.dart';
 import 'package:tech_blog/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
-  late Rx<PosterModel> poster;
+  Rx<PosterModel> poster = PosterModel().obs;
   RxList tagList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcastList = RxList();
@@ -28,6 +28,8 @@ class HomeScreenController extends GetxController {
       response.data['top_podcasts'].forEach((element) {
         topPodcastList.add(PodcastModel.fromJson(element));
       });
+
+      poster.value = PosterModel.fromJson(response.data['poster']);
     }
   }
 }
