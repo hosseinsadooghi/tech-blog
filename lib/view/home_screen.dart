@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/controlers/home_screen_controler.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
@@ -20,7 +19,8 @@ class HomeScreen extends StatelessWidget {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Obx(
-        () => Column(
+        () =>
+         homeScreenController.loading == false? Column(
           children: [
             poster(context),
             //space between poster and tags
@@ -52,8 +52,11 @@ class HomeScreen extends StatelessWidget {
               height: size.height / 10,
             )
           ],
-        ),
-      ),
+        )
+        : Center(child: loading())
+      )
+      //loading screen while reading files from api
+      
     );
   }
 
@@ -105,10 +108,7 @@ class HomeScreen extends StatelessWidget {
                             );
                           },
                           placeholder: (context, url) {
-                            return SpinKitFadingCube(
-                              color: MyColors.primaryColor,
-                              size: 32,
-                            );
+                            return loading();
                           },
                           errorWidget: (context, url, error) {
                             return Icon(
@@ -199,10 +199,7 @@ class HomeScreen extends StatelessWidget {
                                     image: imageProvider, fit: BoxFit.cover)));
                       },
                       placeholder: (context, url) {
-                        return SpinKitFadingCube(
-                          color: MyColors.primaryColor,
-                          size: 32,
-                        );
+                        return loading();
                       },
                       errorWidget: (context, url, error) {
                         return Icon(
@@ -257,10 +254,7 @@ class HomeScreen extends StatelessWidget {
                           image: imageProvider, fit: BoxFit.cover)));
             },
             placeholder: (context, url) {
-              return SpinKitFadingCube(
-                color: MyColors.primaryColor,
-                size: 32,
-              );
+              return loading();
             },
             errorWidget: (context, url, error) {
               return Icon(
@@ -295,6 +289,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
 
 class SeeMorePodCasts extends StatelessWidget {
   const SeeMorePodCasts({

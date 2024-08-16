@@ -10,6 +10,7 @@ class HomeScreenController extends GetxController {
   RxList tagList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcastList = RxList();
+  RxBool loading = false.obs;
 
   @override
   onInit() {
@@ -18,6 +19,8 @@ class HomeScreenController extends GetxController {
   }
 
   getHomeItems() async {
+    loading.value = true;
+
     var response = await DioService().getMethod(ApiConstant.getHomeItems);
 
     if (response.statusCode == 200) {
@@ -30,6 +33,8 @@ class HomeScreenController extends GetxController {
       });
 
       poster.value = PosterModel.fromJson(response.data['poster']);
+
+      loading.value = false;
     }
   }
 }
