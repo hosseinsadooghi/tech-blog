@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:tech_blog/controlers/home_screen_controler.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/component/my_colors.dart';
@@ -58,7 +60,7 @@ class MainTags extends StatelessWidget {
               width: 8,
             ),
             Text(
-              tagList[index].title,
+              Get.find<HomeScreenController>().tagList[index].title!,
               style: textTheme.displayMedium,
             )
           ],

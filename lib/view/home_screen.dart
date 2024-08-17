@@ -16,48 +16,45 @@ class HomeScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     var marginFromSide = size.width / 12.46;
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Obx(
-        () =>
-         homeScreenController.loading == false? Column(
-          children: [
-            poster(context),
-            //space between poster and tags
-            const SizedBox(
-              height: 16,
+    return Obx(() => homeScreenController.loading == false
+        ? SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                poster(context),
+                //space between poster and tags
+                const SizedBox(
+                  height: 16,
+                ),
+
+                tags(context),
+                //space between hashtags and hot articles
+                const SizedBox(
+                  height: 32,
+                ),
+
+                SeeMoreArticles(
+                    marginFromSide: marginFromSide, textTheme: textTheme),
+
+                topVisited(context),
+                //space between articles and poscasts
+                const SizedBox(
+                  height: 32,
+                ),
+
+                SeeMorePodCasts(
+                    marginFromSide: marginFromSide, textTheme: textTheme),
+
+                topPodcasts(context),
+                //space between podcast and bottom of the window so it doesnt go behind the navbar
+                SizedBox(
+                  height: size.height / 10,
+                )
+              ],
             ),
-
-            HomePageTags(marginFromSide: marginFromSide, textTheme: textTheme),
-            //space between hashtags and hot articles
-            const SizedBox(
-              height: 32,
-            ),
-
-            SeeMoreArticles(
-                marginFromSide: marginFromSide, textTheme: textTheme),
-
-            topVisited(context),
-            //space between articles and poscasts
-            const SizedBox(
-              height: 32,
-            ),
-
-            SeeMorePodCasts(
-                marginFromSide: marginFromSide, textTheme: textTheme),
-
-            topPodcasts(context),
-            //space between podcast and bottom of the window so it doesnt go behind the navbar
-            SizedBox(
-              height: size.height / 10,
-            )
-          ],
-        )
-        : Center(child: loading())
-      )
-      //loading screen while reading files from api
-      
-    );
+          )
+        : Center(child: loading()));
+    //loading screen while reading files from api
   }
 
   Widget topVisited(BuildContext context) {
@@ -273,8 +270,8 @@ class HomeScreen extends StatelessWidget {
         //poster texts
         Positioned(
           bottom: 8,
-          left: 0,
-          right: 0,
+          left: 8,
+          right: 8,
           child: Column(
             children: [
               //title
@@ -288,9 +285,32 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+
+  Widget tags(BuildContext context){
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
+    var marginFromSide = size.width / 12.46;
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: tagList.length,
+          itemBuilder: ((context, index) {
+            return Padding(
+              padding: EdgeInsets.fromLTRB(
+                  index == tagList.length - 1 ? marginFromSide : 0,
+                  8,
+                  index == 0 ? marginFromSide : 15,
+                  8),
+              child: MainTags(
+                textTheme: textTheme,
+                index: index,
+              ),
+            );
+          })),
+    );
+  }
 }
-
-
 
 class SeeMorePodCasts extends StatelessWidget {
   const SeeMorePodCasts({
@@ -362,36 +382,3 @@ class SeeMoreArticles extends StatelessWidget {
   }
 }
 
-class HomePageTags extends StatelessWidget {
-  const HomePageTags({
-    super.key,
-    required this.marginFromSide,
-    required this.textTheme,
-  });
-
-  final double marginFromSide;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: tagList.length,
-          itemBuilder: ((context, index) {
-            return Padding(
-              padding: EdgeInsets.fromLTRB(
-                  index == tagList.length - 1 ? marginFromSide : 0,
-                  8,
-                  index == 0 ? marginFromSide : 15,
-                  8),
-              child: MainTags(
-                textTheme: textTheme,
-                index: index,
-              ),
-            );
-          })),
-    );
-  }
-}
