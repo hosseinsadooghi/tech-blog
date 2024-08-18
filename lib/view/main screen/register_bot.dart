@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_strings.dart';
-import 'package:tech_blog/view/userNameAndCategories.dart';
+import 'package:tech_blog/view/user_name_and_categories.dart';
 
 class RegisterBot extends StatelessWidget {
   
@@ -161,10 +161,7 @@ class RegisterBot extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (context) => UserNameAndCategories(
-                                size: size,
-                                textTheme: textTheme,
-                              )
+                              builder: (context) => UserNameAndCategories( )
                             )
                           );
                         },

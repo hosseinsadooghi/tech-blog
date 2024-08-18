@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/controlers/home_screen_controler.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/component/my_strings.dart';
@@ -294,11 +293,11 @@ class HomeScreen extends StatelessWidget {
       height: 60,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: tagList.length,
+          itemCount: homeScreenController.tagList.length,
           itemBuilder: ((context, index) {
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  index == tagList.length - 1 ? marginFromSide : 0,
+                  index == homeScreenController.tagList.length - 1 ? marginFromSide : 0,
                   8,
                   index == 0 ? marginFromSide : 15,
                   8),

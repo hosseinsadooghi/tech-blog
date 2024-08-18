@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/view/splash_screen.dart';
+import 'package:tech_blog/view/user_name_and_categories.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -116,6 +117,6 @@ class MyApp extends StatelessWidget {
                     
             )),
         debugShowCheckedModeBanner: false,
-        home: const SplashScreen());
+        home:  UserNameAndCategories());
   }
 }
