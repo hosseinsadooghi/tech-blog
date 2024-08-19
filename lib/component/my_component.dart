@@ -2,11 +2,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:tech_blog/component/text_style.dart';
 import 'package:tech_blog/controlers/home_screen_controler.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake-data.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+
+  PreferredSize techBlogAppBar(context,String title) {
+    var size = MediaQuery.of(context).size;
+    var marginFromSide = size.width / 12.46;
+    return PreferredSize(
+      preferredSize: Size.fromHeight(80),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(left: marginFromSide),
+              child: Center(
+                child: Text(
+                  title,
+                  style: appBarTextStyle,),
+              ),
+            ),
+            
+          ],
+          leading: Padding(
+            padding: EdgeInsets.only(right: marginFromSide),
+            child: Container(
+              height: size.width / 8,
+              width: size.width / 8,
+              decoration: BoxDecoration(
+                color: MyColors.primaryColor.withAlpha(100),
+                shape: BoxShape.circle),
+              child: Icon(Icons.keyboard_arrow_right_rounded),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 
 class techDivider extends StatelessWidget {
   const techDivider({
