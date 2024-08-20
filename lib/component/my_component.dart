@@ -31,11 +31,10 @@ import 'package:url_launcher/url_launcher.dart';
             ),
             
           ],
+          leadingWidth: size.width/5,
           leading: Padding(
             padding: EdgeInsets.only(right: marginFromSide),
             child: Container(
-              height: size.width / 8,
-              width: size.width / 8,
               decoration: BoxDecoration(
                 color: MyColors.primaryColor.withAlpha(100),
                 shape: BoxShape.circle),
