@@ -6,6 +6,7 @@ import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_strings.dart';
+import 'package:tech_blog/view/article_list_screen.dart';
 import 'package:tech_blog/view/main%20screen/home_screen.dart';
 import 'package:tech_blog/view/main%20screen/profile_screen.dart';
 import 'package:tech_blog/view/main%20screen/register_bot.dart';

@@ -36,12 +36,11 @@ class MyApp extends StatelessWidget {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(width: 2),
-                
               ),
-              focusedBorder: OutlineInputBorder(  
+              focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(width: 2,color: MyColors.primaryColor),      
-              ), 
+                borderSide: BorderSide(width: 2, color: MyColors.primaryColor),
+              ),
             ),
             //project buttoms decoration
             elevatedButtonTheme: ElevatedButtonThemeData(
@@ -114,10 +113,8 @@ class MyApp extends StatelessWidget {
                     fontFamily: 'dana',
                     fontSize: 14,
                     color: Colors.black,
-                    fontWeight: FontWeight.w700)
-                    
-            )),
+                    fontWeight: FontWeight.w700))),
         debugShowCheckedModeBanner: false,
-        home:  ArticleListScreen());
+        home: ArticleListScreen());
   }
 }

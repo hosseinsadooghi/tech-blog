@@ -10,7 +10,7 @@ import 'package:tech_blog/component/my_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-  PreferredSize techBlogAppBar(context,String title) {
+   techBlogAppBar(context,String title) {
     var size = MediaQuery.of(context).size;
     var marginFromSide = size.width / 12.46;
     return PreferredSize(
@@ -18,7 +18,9 @@ import 'package:url_launcher/url_launcher.dart';
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: MyColors.scafoldBackGround,
+          foregroundColor: MyColors.scafoldBackGround,
+          surfaceTintColor: MyColors.scafoldBackGround,
           elevation: 0,
           actions: [
             Padding(
