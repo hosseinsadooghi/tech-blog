@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tech_blog/component/my_colors.dart';
-import 'package:tech_blog/view/article_list_screen.dart';
+import 'package:tech_blog/view/main%20screen/article_list_screen.dart';
+import 'package:tech_blog/view/main%20screen/article_single_screen.dart';
 import 'package:tech_blog/view/splash_screen.dart';
 import 'package:tech_blog/view/user_name_and_categories.dart';
 
@@ -115,6 +116,6 @@ class MyApp extends StatelessWidget {
                     color: Colors.black,
                     fontWeight: FontWeight.w700))),
         debugShowCheckedModeBanner: false,
-        home: ArticleListScreen());
+        home: ArticleSingleScreen());
   }
 }

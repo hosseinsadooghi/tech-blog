@@ -74,6 +74,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/reg_bot.svg
   SvgGenImage get regBot => const SvgGenImage('assets/images/reg_bot.svg');
 
+  /// File path: assets/images/valhalla.png
+  AssetGenImage get valhalla =>
+      const AssetGenImage('assets/images/valhalla.png');
+
   /// List of all assets
   List<dynamic> get values => [
         logo,
@@ -82,7 +86,8 @@ class $AssetsImagesGen {
         podcastsPicture3,
         podcastsPicture4,
         programming,
-        regBot
+        regBot,
+        valhalla
       ];
 }
 
