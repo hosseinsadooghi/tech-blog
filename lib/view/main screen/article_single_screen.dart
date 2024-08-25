@@ -9,6 +9,10 @@ class ArticleSingleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = Theme.of(context).textTheme;
+    var size = MediaQuery.of(context).size;
+    var marginFromSide = size.width / 12.46;
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: MyColors.scafoldBackGround,
@@ -51,12 +55,14 @@ class ArticleSingleScreen extends StatelessWidget {
                         SizedBox(
                           width: 20,
                         ),
+                        //back icon
                         Icon(
                           Icons.arrow_back,
                           color: Colors.white,
                           size: 24,
                         ),
                         Expanded(child: SizedBox()),
+                        //bookmark icon
                         Icon(
                           Icons.bookmark_border_outlined,
                           color: Colors.white,
@@ -65,6 +71,7 @@ class ArticleSingleScreen extends StatelessWidget {
                         SizedBox(
                           width: 20,
                         ),
+                        //share icon
                         Icon(
                           Icons.share,
                           color: Colors.white,
@@ -77,6 +84,44 @@ class ArticleSingleScreen extends StatelessWidget {
                     ),
                   ))
             ],
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+                marginFromSide / 2, 0, marginFromSide / 2, 0),
+            child: Column(
+              children: [
+                //title
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "گگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگوه بخور",
+                    maxLines: 2,
+                    style: textTheme.titleLarge,
+                  ),
+                ),
+                Row(
+                  children: [
+                    //avatar
+                    Image(
+                      image: Image.asset(Assets.icons.avatar.path).image,
+                      height: 50,
+                    ),
+                    SizedBox(width: 16,),
+                    //writer name
+                    Text(
+                      "ممد رسول",
+                      style: textTheme.labelMedium,
+                    ),
+                    SizedBox(width: 16,),
+                    //date
+                    Text(
+                      "تاریخ",
+                      style: textTheme.headlineSmall,
+                    ),
+                  ],
+                )
+              ],
+            ),
           )
         ],
       ),

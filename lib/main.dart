@@ -114,7 +114,12 @@ class MyApp extends StatelessWidget {
                     fontFamily: 'dana',
                     fontSize: 14,
                     color: Colors.black,
-                    fontWeight: FontWeight.w700))),
+                    fontWeight: FontWeight.w700),
+                    headlineSmall: TextStyle(
+                    fontFamily: 'dana',
+                    fontSize: 14,
+                    color: MyColors.subText,
+                    fontWeight: FontWeight.w300),)),
         debugShowCheckedModeBanner: false,
         home: ArticleSingleScreen());
   }
