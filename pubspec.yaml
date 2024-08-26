@@ -40,7 +40,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   intl: 0.19.0
   flutter_spinkit: ^5.2.1
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^2.0.10
   get: ^4.6.6
   url_launcher: ^6.3.0
   share_plus: ^10.0.0
@@ -48,6 +48,7 @@ dependencies:
   vector_graphics: any
   dio: ^5.5.0+1
   cached_network_image: ^3.4.1
+  flutter_widget_from_html: ^0.15.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

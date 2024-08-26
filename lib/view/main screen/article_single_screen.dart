@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
@@ -106,19 +107,36 @@ class ArticleSingleScreen extends StatelessWidget {
                       image: Image.asset(Assets.icons.avatar.path).image,
                       height: 50,
                     ),
-                    SizedBox(width: 16,),
+                    SizedBox(
+                      width: 16,
+                    ),
                     //writer name
                     Text(
                       "ممد رسول",
                       style: textTheme.labelMedium,
                     ),
-                    SizedBox(width: 16,),
+                    SizedBox(
+                      width: 16,
+                    ),
                     //date
                     Text(
                       "تاریخ",
                       style: textTheme.headlineSmall,
                     ),
                   ],
+                ),
+                HtmlWidget(
+                  '''
+<h1>This is the biggest one</h1>
+<h2>This one is a little smaller</h2>
+<h3>This one is even smaller</h3>
+<h4>They keep getting smaller</h4>
+<h5>This one isn't even that big</h5>
+<h6>Pretty small now, actually</h6>
+''',
+                  textStyle: textTheme.bodySmall,
+                  enableCaching: true,
+                  onLoadingBuilder: (context, element, loadingProgress) => loading(),
                 )
               ],
             ),
