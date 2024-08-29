@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
@@ -13,7 +13,6 @@ class ArticleSingleScreen extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
     var marginFromSide = size.width / 12.46;
-
     return SafeArea(
         child: Scaffold(
       backgroundColor: MyColors.scafoldBackGround,
@@ -95,7 +94,7 @@ class ArticleSingleScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "گگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگوه بخور",
+                    "گگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگگر",
                     maxLines: 2,
                     style: textTheme.titleLarge,
                   ),
@@ -125,19 +124,19 @@ class ArticleSingleScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                HtmlWidget(
-                  '''
-<h1>This is the biggest one</h1>
-<h2>This one is a little smaller</h2>
-<h3>This one is even smaller</h3>
-<h4>They keep getting smaller</h4>
-<h5>This one isn't even that big</h5>
-<h6>Pretty small now, actually</h6>
-''',
-                  textStyle: textTheme.bodySmall,
-                  enableCaching: true,
-                  onLoadingBuilder: (context, element, loadingProgress) => loading(),
-                )
+//                 HtmlWidget(
+//                   '''
+// <h1>This is the biggest one</h1>
+// <h2>This one is a little smaller</h2>
+// <h3>This one is even smaller</h3>
+// <h4>They keep getting smaller</h4>
+// <h5>This one isn't even that big</h5>
+// <h6>Pretty small now, actually</h6>
+// ''',
+//                   textStyle: textTheme.bodySmall,
+//                   enableCaching: true,
+//                   onLoadingBuilder: (context, element, loadingProgress) => loading(),
+//                 )
               ],
             ),
           )

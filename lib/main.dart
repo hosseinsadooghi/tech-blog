@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:tech_blog/component/my_colors.dart';
 import 'package:tech_blog/view/main%20screen/article_list_screen.dart';
 import 'package:tech_blog/view/main%20screen/article_single_screen.dart';
@@ -22,15 +23,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('fa'), // farsi
-        ],
+    return GetMaterialApp(
+        
+        locale: const Locale('fa'),
         theme: ThemeData(
             //project inputs decoration
             inputDecorationTheme: InputDecorationTheme(
@@ -121,6 +116,6 @@ class MyApp extends StatelessWidget {
                     color: MyColors.subText,
                     fontWeight: FontWeight.w300),)),
         debugShowCheckedModeBanner: false,
-        home: ArticleSingleScreen());
+        home: ArticleListScreen());
   }
 }
