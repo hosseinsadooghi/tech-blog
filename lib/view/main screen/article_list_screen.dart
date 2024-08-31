@@ -36,8 +36,7 @@ class ArticleListScreen extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           singleArticleControler.id.value = int.parse(articleListControler.articleList[index].id!);
-                          Get.to(ArticleSingleScreen()
-                          );
+                          Get.to(ArticleSingleScreen());
                         },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
