@@ -1,3 +1,5 @@
+import 'package:tech_blog/component/api_constant.dart';
+
 class ArticleInfoModel {
   String? id;
   String? title;
@@ -18,7 +20,7 @@ class ArticleInfoModel {
     id= info['id'];
     title=info['title'];
     content=info['content'];
-    image=info['image'];
+    image= info['image'];
     catId=info['cat_id'];
     catName=info['cat_name'];
     author=info['author'];

@@ -13,6 +13,7 @@ class DioService {
     )
     .then((response) {
       return response;
-    });
+    }
+    );
   }
 }
