@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -15,14 +17,7 @@ class ArticleSingleScreen extends StatefulWidget {
 }
 
 class _ArticleSingleScreenState extends State<ArticleSingleScreen> {
-  SingleArticleControler singleArticleControler =
-      Get.put(SingleArticleControler());
-
-  @override
-  void initState() {
-    super.initState();
-    singleArticleControler.getArticleInfo();
-  }
+  var singleArticleControler = Get.find<SingleArticleControler>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,8 @@ class _ArticleSingleScreenState extends State<ArticleSingleScreen> {
         child: Scaffold(
       backgroundColor: MyColors.scafoldBackGround,
       body: Obx(
-        () => Column(
+        () =>singleArticleControler.loading == false
+        ? Column(
           children: [
             Stack(
               children: [
@@ -156,7 +152,7 @@ class _ArticleSingleScreenState extends State<ArticleSingleScreen> {
               ),
             )
           ],
-        ),
+        ):Center(child: loading(),)
       ),
     ));
   }

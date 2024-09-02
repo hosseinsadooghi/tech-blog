@@ -13,7 +13,7 @@ class ArticleInfoModel {
   String? createdAt;
   bool? isFavorite;
 
-  ArticleInfoModel();
+ArticleInfoModel();
   
   ArticleInfoModel.fromJson(Map<String, dynamic> element) {
     var info = element['info'];

@@ -9,22 +9,17 @@ class SingleArticleControler extends GetxController {
   RxInt id = RxInt(0);
   Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel().obs;
 
-  @override
-  onInit() {
-    super.onInit();
-  }
 
-  getArticleInfo() async {
+
+  getArticleInfo(var id) async {
     loading.value = true;
     //TODO: hard cod userId
     var userId = '';
-    print(ApiConstant.baseUrl +
-        'article/get.php?command=info&id=$id&user_id=$userId');
+
     var response = await DioService().getMethod(ApiConstant.baseUrl +
         'article/get.php?command=info&id=1&user_id=$userId');
-    print("ok");
+
     if (response.statusCode == 200) {
-      print("ok");
       articleInfoModel.value = ArticleInfoModel.fromJson(response.data);
       loading.value = false;
     }

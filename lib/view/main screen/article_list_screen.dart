@@ -34,10 +34,11 @@ class ArticleListScreen extends StatelessWidget {
                     itemCount: articleListControler.articleList.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {
-                          singleArticleControler.id.value = int.parse(articleListControler.articleList[index].id!);
-                          Get.to(()=>ArticleSingleScreen());
-                        },
+                        onTap: () async {
+                            await singleArticleControler.getArticleInfo(
+                                articleListControler.articleList[index].id);
+                            Get.to(ArticleSingleScreen());
+                          },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
                           child: Row(
